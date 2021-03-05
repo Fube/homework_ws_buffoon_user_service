@@ -66,7 +66,7 @@ router.delete("/:guid", async(req, res) => {
     return res.status(500).send("Server error");
 });
 
-router.get("/compare/:email", async(req, res) => {
+router.post("/compare/:email", async(req, res) => {
 
     const { params: { email }, body: { password } } = req;
 
