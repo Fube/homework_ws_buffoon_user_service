@@ -3,10 +3,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userController = require('./controllers/UserController');
+const sessionController = require('./controllers/SessionController');
 
 const {
     PORT,
     DB_URI,
+    SESSION_SECRET
 } = process.env;
 
 (async () => {
@@ -22,6 +24,7 @@ const {
     });
 
     app.use('/api/user', userController);
+    app.use('/api/session', sessionController);
 
     app.listen(PORT || 8080, () => console.log('LMG MOUNTED N LOADED'));
 })();
