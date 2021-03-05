@@ -8,7 +8,6 @@ const sessionController = require('./controllers/SessionController');
 const {
     PORT,
     DB_URI,
-    SESSION_SECRET
 } = process.env;
 
 (async () => {
