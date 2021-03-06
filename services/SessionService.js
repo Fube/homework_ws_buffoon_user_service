@@ -14,6 +14,11 @@ const softAssign = require('../utils/softAssign');
  */
 async function createSession(uuid) {
 
+    const doc = await sessionRepo.findOne({ uuid });
+    if(doc) {
+        return doc.token;
+    }
+
     const token = nano.nanoid(16);
     await sessionRepo.create({
         uuid,

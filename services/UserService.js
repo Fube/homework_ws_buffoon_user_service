@@ -150,9 +150,9 @@ async function deleteUserById(guid) {
  * @param {String} password 
  * @returns {Promise<Boolean>}
  */
-async function comparePasswords(guid, password) {
+async function comparePasswords(email, password) {
 
-    const user = await userRepo.findById(guid);
+    const user = await userRepo.findByEmail(email);
 
     if(!user) {
         throw new ReferenceError("User not found");

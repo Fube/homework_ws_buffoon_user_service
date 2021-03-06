@@ -22,12 +22,12 @@ router.post('/', ensureUser, async (req, res) => {
     }
 });
 
-router.get('/:email', async (req, res) => {
+router.get('/:guid', async (req, res) => {
 
-    const { email } = req.params;
+    const { guid } = req.params;
 
     try{
-        const user = await userService.findUserByEmail(email);
+        const user = await userService.findUserById(guid);
         return res.status(200).json(user);
     }
     catch(e) {
