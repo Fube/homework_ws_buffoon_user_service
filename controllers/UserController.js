@@ -44,6 +44,28 @@ router.get('/:guid', async (req, res) => {
     return res.status(500).send("Server error");
 });
 
+router.get('/email/:email', async(req, res) => {
+
+    const { email } = req.params;
+
+    try{
+        const user = await userService.findUserByEmail(email);
+        return res.status(200).json(user);
+    }
+    catch(e) {
+
+        if(e instanceof ReferenceError) {
+            return res.status(404).send(e.message);
+        }
+        if(e instanceof CastError) {
+            return res.status(400).send(e.message);
+        }
+        console.log(e);
+    }
+
+    return res.status(500).send("Server error");
+});
+
 router.delete("/:guid", async(req, res) => {
 
     const { guid } = req.params;
